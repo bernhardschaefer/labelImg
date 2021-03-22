@@ -80,10 +80,12 @@ def format_shortcut(text):
 def generate_color_by_text(text):
     s = ustr(text)
     hash_code = int(hashlib.sha256(s.encode('utf-8')).hexdigest(), 16)
-    r = int((hash_code / 255) % 255)
-    g = int((hash_code / 65025) % 255)
-    b = int((hash_code / 16581375) % 255)
-    return QColor(r, g, b, 100)
+    r = 0  # int((hash_code / 255) % 255)
+    g = 0  # int((hash_code / 65025) % 255)
+    b = 0  # int((hash_code / 16581375) % 255)
+    alpha = 150  # 100
+    return QColor(r, g, b, alpha)
+
 
 def have_qstring():
     """p3/qt5 get rid of QString wrapper as py3 has native unicode str type"""

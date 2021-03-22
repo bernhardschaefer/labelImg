@@ -34,7 +34,7 @@ class Shape(object):
     vertex_fill_color = DEFAULT_VERTEX_FILL_COLOR
     h_vertex_fill_color = DEFAULT_HVERTEX_FILL_COLOR
     point_type = P_ROUND
-    point_size = 8
+    point_size = 6
     scale = 1.0
     label_font_size = 8
 
@@ -119,6 +119,13 @@ class Shape(object):
                 for point in self.points:
                     min_x = min(min_x, point.x())
                     min_y = min(min_y, point.y())
+
+                max_x = 0
+                max_y = 0
+                for point in self.points:
+                    max_x = max(max_x, point.x())
+                    max_y = max(max_y, point.y())
+
                 if min_x != sys.maxsize and min_y != sys.maxsize:
                     font = QFont()
                     font.setPointSize(self.label_font_size)
@@ -128,7 +135,9 @@ class Shape(object):
                         self.label = ""
                     if min_y < min_y_label:
                         min_y += min_y_label
-                    painter.drawText(min_x, min_y, self.label)
+                    # print(self.label, self.label_font_size)
+                    y_mid = max_y - 0.2 * (max_y - min_y)
+                    painter.drawText(min_x, y_mid, self.label)
 
             if self.fill:
                 color = self.select_fill_color if self.selected else self.fill_color
