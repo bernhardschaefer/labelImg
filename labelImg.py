@@ -1142,7 +1142,7 @@ class MainWindow(QMainWindow, WindowMixin):
         assert not self.image.isNull(), "cannot paint null image"
         self.canvas.scale = 0.01 * self.zoom_widget.value()
         # Note: this overwrites Shape.label_font_size
-        self.canvas.label_font_size = int(0.015 * max(self.image.width(), self.image.height()))
+        self.canvas.label_font_size = int(0.01 * max(self.image.width(), self.image.height()))
         self.canvas.adjustSize()
         self.canvas.update()
 
